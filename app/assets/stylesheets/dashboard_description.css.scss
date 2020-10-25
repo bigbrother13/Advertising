@@ -1,0 +1,49 @@
+#banner {
+  background-image: url(image_path("1.jpg"));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  width: 100%;
+  height: 500px;
+  display: table;
+  margin-bottom: 10px;
+  .banner_content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    h1 {
+      color: white;
+      font-size: 9rem;
+      font-weight: 600;
+      margin: 0;
+      margin-left: 121.4px;
+    }
+    p {
+      font-size: 2rem;
+      margin: 0 0 2.5rem 121.4px;
+      color: rgba(250, 250, 250, 0.5);
+    }
+  }
+  .share_box {
+    display: grid;
+  }
+  .icon{
+    width: 40px;
+    height: 40px;
+    margin: 10px 0;
+  }
+  .input-group.md-form.form-sm.form-1 input{
+    border: 1px solid #bdbdbd;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+}
+
+.tags-field {
+  margin: 10px 0;
+}
+
+.pins-block {
+  margin-top: 70px;
+}

@@ -1,0 +1,8 @@
+$('#pins').append("<%= j render(partial: 'delimeter') %>");
+$('#pins').append("<%= j render(@pins) %>");
+
+<% if @pins.next_page %>
+    $('.pagination').replaceWith("<%= j  will_paginate(@pins, renderer: 'BootstrapPaginationHelper::LinkRenderer') %>");
+<% else %>
+    $('.pagination').remove();
+<% end %>

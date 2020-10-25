@@ -1,0 +1,37 @@
+
+<%= will_paginate @pins, renderer: 'BootstrapPaginationeHelper::LinkRenderer' %>
+
+<h1><%= @category.name %></h1>
+
+<% if @category.pins.empty? %>
+  <h2>Статей нет</h2>
+<% end %>
+
+
+<div class="transitions-enabled" id="pins">
+  <% @pins.each do |pin| %>
+    <div class="box panel panel-default">
+      <%= link_to (image_tag pin.image.url(:thumb)), pin %>
+
+      <div class="panel-body">
+        <h2><%= link_to pin.title, pin %></h2>
+        <p>
+         <small>
+            <time><%= pin.created_at.to_date.strftime("%d %B, %Y") %></time>
+          </small>
+        </p>
+        <p><strong><%= link_to pin.user.username, user_path(pin.user.username) %></strong></p>
+        <p><%= pin.description %></p>
+        <% if pin.user == current_user %>
+        <% end %>
+
+        <p class="user"></p>
+        Submitted by
+        <%= pin.user.email %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+
