@@ -1,39 +1,26 @@
-<%= simple_form_for [:admin, @pin], html: { multipart: true } do |f| %>
-  <% if @pin.errors.any? %>
-    <div id="errors"></div>
-    <h2></h2>
-    <%= pluralize(@pin.errors.count, "error") %>
-    prevented this Pin from saving
-    <ul>
-      <% @pin.errors.ful_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <div class="form_group">
-    <%= f.input :image, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form_group">
-    <%= f.input :title, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form_group">
-    <%= f.input :all_tags, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form_group">
-    <%= f.input :category_id, input_html: { class: 'form-control' } %>
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, { include_blank: true }, class: 'form-control' %>
-  </div>
-
-  <div class="form_group">
-    <%= f.input :description, input_html: { class: 'form-control' } %>
-  </div>
-
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+| <%= simple_form_for [:admin, @pin], html: { multipart: true } do |f| %
+| <% if @pin.errors.any? %
+#errors
+h2
+| <%= pluralize(@pin.errors.count, "error") %
+| prevented this Pin from saving
+ul
+  | <% @pin.errors.ful_messages.each do |msg| %
+  li
+    | <%= msg %
+  | <% end %
+| <% end %
+.form_group
+  | <%= f.input :image, input_html: { class: 'form-control' } %
+.form_group
+  | <%= f.input :title, input_html: { class: 'form-control' } %
+.form_group
+  | <%= f.input :all_tags, input_html: { class: 'form-control' } %
+.form_group
+  | <%= f.input :category_id, input_html: { class: 'form-control' } %
+  | <%= f.collection_select :category_id, Category.order(:name), :id, :name, { include_blank: true }, class: 'form-control' %
+.form_group
+  | <%= f.input :description, input_html: { class: 'form-control' } %
+| <%= f.button :submit, class: "btn btn-primary" %
+| <% end %
 
