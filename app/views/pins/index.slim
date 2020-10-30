@@ -1,0 +1,44 @@
+#banner
+  .banner_content
+    h1 Shuttersbank
+    p Beautiful, free photos.
+    p Gifted by the world’s most generous community of photographers.
+  .share_box
+    /! Facebook
+    a href="https://www.facebook.com/pages/feccbok/244971538850523" = image_tag("facebook.svg", class: "icon", alt: "Edit Entry")
+    /! Twitter
+    a href="https://twitter.com/" = image_tag("twitter.svg", class: "icon", alt: "Edit Entry")
+    /! Google +
+    a href="https://plus.google.com/discover" = image_tag("google-plus.svg", class: "icon", alt: "Edit Entry")
+    /! Linkedin
+    a href="https://www.linkedin.com/" = image_tag("linkedin.svg", class: "icon", alt: "Edit Entry")
+    /! Instagram
+    a href="https://www.instagram.com/" = image_tag("instagram.svg", class: "icon", alt: "Edit Entry")
+    /! Pinterest
+    a href="https://www.pinterest.com/" = image_tag("pinterest.svg", class: "icon", alt: "Edit Entry")
+    /! Youtube
+    a href="https://www.youtube.com/" = image_tag("youtube.svg", class: "icon", alt: "Edit Entry")
+    /! Vkontakte
+    a href="https://vk.com/im" = image_tag("vk.svg", class: "icon", alt: "Edit Entry")
+    /! Github
+    / a href="https://github.com/" = image_tag("github-logo.svg", class: "icon", alt: "Edit Entry")
+.tags-field
+  .col-md-8
+    - tag_cloud(Tag.counts, %w{tag1 tag2 tag3 tag4 tag5}) do |tag, css_class|
+      = link_to tag.name, tag_path(tag.name), class: "btn btn-primary"
+.pins-block
+  #pins.transitions-enabled
+    - @pins.each do |pin|
+      .box.panel.panel-default
+        = link_to (image_tag pin.image.url(:thumb)), pin
+        .panel-body
+          h2= link_to pin.title, pin
+          p
+            small
+              time= pin.created_at.to_date.strftime("%d %B, %Y")
+          p
+            strong= link_to pin.user.username, user_path(pin.user.username)
+          p= pin.description
+          p.user
+          Submitted
+          | #{pin.user.email}

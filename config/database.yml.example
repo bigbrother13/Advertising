@@ -1,0 +1,10 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  user: your_mysql_user
+  password: your_mysql_password
+  timeout: 5000
+
+development:
+  <<: *default
+  database: your_mysql_db_name

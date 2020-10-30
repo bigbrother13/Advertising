@@ -1,0 +1,20 @@
+.col-md-8.col-md-offset-2
+  = will_paginate @pins, renderer: 'BootstrapPaginationeHelper::LinkRenderer'
+  h1= @category.name
+  - if @category.pins.empty?
+    h2 Статей нет
+  #pins.transitions-enabled
+    - @pins.each do |pin|
+      .box.panel.panel-default
+        = link_to (image_tag pin.image.url(:thumb)), pin
+        .panel-body
+          h2= link_to pin.title, pin
+          p
+            small
+              time= pin.created_at.to_date.strftime("%d %B, %Y")
+          p
+            strong= link_to pin.user.username, user_path(pin.user.username)
+          p= pin.description
+          - if pin.user == current_user
+          p.user
+            = "Submitted by #{pin.user.email}"

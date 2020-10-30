@@ -1,0 +1,66 @@
+doctype transitional
+html
+header
+  title
+    | Shuttersbank
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+body
+  nav.navbar.navbar-default
+    .container
+      .navbar-brand
+        = link_to "Shuttersbank", root_path
+      - if user_signed_in?
+        ul.nav.navbar-nav.navbar-left[style="margin-top: 8px;"]
+
+        .dropdown
+          button.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown"]
+            | Categories 
+            span.caret
+          ul.dropdown-menu
+            - if current_user.admin?
+              li
+                = link_to('Category settings', admin_categories_path, { tabindex: '-1' })
+            - Category.where(ancestry: nil).each do |category|
+              - if category.children.blank?
+                li
+                  a[tabindex="-1" href="#"]
+                    = "#{category.name}"
+              - else
+                li.dropdown-submenu
+                  a.test[tabindex="-1" href="#"]
+                    = "#{category.name}"
+                    span.caret
+                  ul.dropdown-menu
+                    - category.children.each do |child|
+                      - if current_user.admin?
+                        li
+                          = link_to(child.name, edit_admin_category_path(child.id), { tabindex: '-1' })
+                      - else
+                        li
+                          = link_to(child.name, category_path(child.id), { tabindex: '-1' })
+        ul.nav.navbar-nav.navbar-right
+          = form_tag search_pins_path, method: :get, class: "navbar-form navbar-left", role: "search" do
+            p
+              = text_field_tag :search, params[:search], class: "form-control"
+              = submit_tag "Search", name: nil, class: "btn btn-default"
+          - if current_user.admin?
+            li
+              = link_to "New Pin", new_admin_pin_path
+          li
+            = link_to "Sign Out", destroy_user_session_path, method: :delete
+          li
+            = link_to(image_tag(current_user.avatar.url), edit_user_registration_path)
+          li
+            = link_to current_user.username , edit_user_registration_path
+      - else
+        ul.nav.navbar-nav.navbar-right
+          li
+            = link_to "Sign Up", new_user_registration_path
+          li
+            = link_to "Sing In", new_user_session_path
+  .container
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "alert alert-info"
+= yield

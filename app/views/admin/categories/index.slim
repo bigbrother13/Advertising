@@ -1,0 +1,20 @@
+h1 Category
+.buttons_panel
+  = link_to 'Новая категория', new_admin_category_path, class: 'btn btn-outline-primary btn-sm'
+section#categories
+  table.table
+    thead
+      tr
+        th #
+        th Name
+        th Category parent
+        th
+    tbody
+      - @categories.each_with_index do |category, index|
+        tr
+          td = index + 1
+          td = category.name
+          td = category.parent.name if category.parent.present?
+          td
+            = link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-outline-primary btn-sm'
+            = link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-outline-danger btn-sm'

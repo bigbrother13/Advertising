@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pins, only: [:show, :index]
   resources :tags, only: [:show]
   resources :categories, only: [:show]
 

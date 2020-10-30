@@ -1,0 +1,39 @@
+#pin_show.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default
+      .panel-heading.pin_image
+        = image_tag @pin.image.url(:medium)
+      section.footer-summary
+        = raw @pin.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'btn btn-primary'}.join('')
+      .panel-body
+        h1
+          = @pin.title
+        p
+          = @pin.description
+        p
+          small
+            time= @pin.created_at.to_date.strftime("%d %B, %Y")
+        Submitted 
+        | #{@pin.user.email}
+        p
+          strong= link_to @pin.user.username, user_path(@pin.user.username)
+      .panel-footer
+        .row
+          .col-md-6
+            - if @pin.user == current_user
+          .col-md-6
+            .btn-group.pull-right
+              = link_to Lile_pin_path(@pin), method: :put, class: "btn btn-default" do
+                span.glyphicon.glyphicon-heart
+                  = @pin.get_upvotes.size
+              - if current_user.admin?
+                = link_to "Edit", edit_admin_pin_path, class: "btn btn-default"
+                = link_to "Delete", admin_pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+              - elsif user_signed_in? && @pin.user == current_user
+                = link_to "Edit", edit_pin_path, class: "btn btn-default"
+                = link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+.col-md-8.col-md-offset-2
+  .row
+    .panel.panel-default
+      .panel-heading
+        = render 'disqus'
