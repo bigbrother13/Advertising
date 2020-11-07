@@ -8,3 +8,7 @@ default: &default
 development:
   <<: *default
   database: your_mysql_db_name
+
+test:
+  <<: *default
+  database: your_test_mysql_db_name

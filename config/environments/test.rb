@@ -5,6 +5,7 @@ Rails.application.configure do
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
+  config.secret_key_base = "b5499d2f09d065a9a530db401c27bcfe2839040a4e57d99faea44d7fef7fac80b5401ca61124e19154b071ee33a3363eb1d11299cb0aa823a8ab11bcbd7af345"
   config.cache_classes = true
 
   # Do not eager load code on boot. This avoids loading your whole application
