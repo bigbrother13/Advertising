@@ -41,10 +41,11 @@ body
                         li
                           = link_to(child.name, category_path(child.id), { tabindex: '-1' })
         ul.nav.navbar-nav.navbar-right
-          = form_tag search_pins_path, method: :get, class: "navbar-form navbar-left", role: "search" do
+          = form_tag pins_path, method: :get, remote: true, class: "navbar-form navbar-left", role: "search", id: "pins_search" do
             p
               = text_field_tag :search, params[:search], class: "form-control"
-              = submit_tag "Search", name: nil, class: "btn btn-default"
+              = submit_tag "Search", :name => nil
+
           - if current_user.admin?
             li
               = link_to "New Pin", new_admin_pin_path

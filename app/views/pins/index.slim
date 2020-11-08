@@ -27,18 +27,7 @@
     - tag_cloud(Tag.counts, %w{tag1 tag2 tag3 tag4 tag5}) do |tag, css_class|
       = link_to tag.name, tag_path(tag.name), class: "btn btn-primary"
 .pins-block
-  #pins.transitions-enabled
-    - @pins.each do |pin|
-      .box.panel.panel-default
-        = link_to (image_tag pin.image.url(:thumb)), pin
-        .panel-body
-          h2= link_to pin.title, pin
-          p
-            small
-              time= pin.created_at.to_date.strftime("%d %B, %Y")
-          p
-            strong= link_to pin.user.username, user_path(pin.user.username)
-          p= pin.description
-          p.user
-          Submitted
-          | #{pin.user.email}
+  #all_pins
+    = render 'pins', pins: @pins
+= will_paginate @page
+

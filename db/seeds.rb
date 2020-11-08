@@ -20,9 +20,38 @@ if Pin.count == 0
   pin_man.image = File.open('public/assets/seeds/man.jpg')
   pin_man.save!
 
+  pin_man_1 = Pin.new(title: 'Casio', description: 'for Man', user_id: admin.id)
+  pin_man_1.image = File.open('public/assets/seeds/clock1.jpg')
+  pin_man_1.save!
+
+  pin_man_2 = Pin.new(title: 'Rolex', description: 'for Man', user_id: admin.id)
+  pin_man_2.image = File.open('public/assets/seeds/clock2.jpg')
+  pin_man_2.save!
+
+  pin_man_3 = Pin.new(title: 'JVP', description: 'for Man', user_id: admin.id)
+  pin_man_3.image = File.open('public/assets/seeds/clock3.jpg')
+  pin_man_3.save!
+
+  pin_man_4 = Pin.new(title: 'Adidas', description: 'for Man', user_id: admin.id)
+  pin_man_4.image = File.open('public/assets/seeds/clock4.jpg')
+  pin_man_4.save!
+
+
   pin_woman = Pin.new(title: 'woman', description: 'for Woman', user_id: admin.id)
   pin_woman.image = File.open('public/assets/seeds/women.jpg')
   pin_woman.save!
+
+  pin_woman_1 = Pin.new(title: 'woman', description: 'for Woman', user_id: admin.id)
+  pin_woman_1.image = File.open('public/assets/seeds/women_clock_2.jpg')
+  pin_woman_1.save!
+
+  pin_woman_2 = Pin.new(title: 'woman', description: 'for Woman', user_id: admin.id)
+  pin_woman_2.image = File.open('public/assets/seeds/women_clock_3.jpg')
+  pin_woman_2.save!
+
+  pin_woman_3 = Pin.new(title: 'woman', description: 'for Woman', user_id: admin.id)
+  pin_woman_3.image = File.open('public/assets/seeds/women_clock_4.jpg')
+  pin_woman_3.save!
 end
 
 # table category

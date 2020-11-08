@@ -19,4 +19,12 @@ class Pin < ActiveRecord::Base
       Tag.where(name: name.strip).first_or_create!
     end
   end
+
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end
