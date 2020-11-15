@@ -33,6 +33,6 @@ class Admin::PinsController < Shared::PinsController
   protected
 
   def check_admin
-    redirect_to root_path, alert: "You do not have permission to access this page" unless current_user.admin?
+    redirect_to root_path, alert: "You do not have permission to access this page" unless current_user
   end
 end

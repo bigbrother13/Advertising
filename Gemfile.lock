@@ -317,7 +317,7 @@ DEPENDENCIES
   oj_mimic_json
   paperclip (~> 6.0.0)
   pry
-  rails (>= 5.0)
+  rails (>= 5.0.7.2)
   rails-controller-testing
   rb-readline
   rspec-rails
@@ -333,6 +333,9 @@ DEPENDENCIES
   web-console (~> 3.0)
   webdrivers
   will_paginate (~> 3.1.0)
+
+RUBY VERSION
+   ruby 2.6.1p33
 
 BUNDLED WITH
    1.17.3
