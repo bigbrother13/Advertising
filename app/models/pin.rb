@@ -1,4 +1,6 @@
 class Pin < ActiveRecord::Base
+  enum status: { draft: 0, published: 1, new_status: 2, rejected: 3, approved: 4, archival: 5 }
+
   # searchkick
   acts_as_votable
   belongs_to :user

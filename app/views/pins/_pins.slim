@@ -8,8 +8,9 @@
           small
             time= pin.created_at.to_date.strftime("%d %B, %Y")
         p
-          strong= link_to pin.user.username, user_path(pin.user.username)
+          -if pin.user
+            strong= link_to pin.user.username, user_path(pin.user.username)
         p= pin.description
         p.user
         Submitted
-        | #{pin.user.email}
+        | #{pin.user&.email}

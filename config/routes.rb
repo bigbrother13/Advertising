@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root "pins#index"
   devise_for :users
 
   resources :pins do
@@ -11,14 +10,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pins, only: [:show, :index]
   resources :tags, only: [:show]
   resources :categories, only: [:show]
 
   namespace :admin do
-    resources :pins, except: [:show, :index]
     resources :categories, except: [:show]
   end
 
   get ':username' => 'users#show', as: 'user'
+  root "pins#index"
 end

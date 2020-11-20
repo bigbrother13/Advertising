@@ -25,12 +25,9 @@
               = link_to Lile_pin_path(@pin), method: :put, class: "btn btn-default" do
                 span.glyphicon.glyphicon-heart
                   = @pin.get_upvotes.size
-              - if current_user&.admin?
-                = link_to "Edit", edit_admin_pin_path, class: "btn btn-default"
-                = link_to "Delete", admin_pin_path, data: { confirm: "Are you sure?" }, class: "btn btn-default"
-              - elsif user_signed_in? && @pin.user == current_user
+              - if user_signed_in? && @pin.user == current_user && !current_user&.admin
                 = link_to "Edit", edit_pin_path, class: "btn btn-default"
-                = link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+                / = link_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
 .col-md-8.col-md-offset-2
   .row
     .panel.panel-default
