@@ -27,6 +27,7 @@
                   = @pin.get_upvotes.size
               - if user_signed_in? && @pin.user == current_user && !current_user&.admin
                 = link_to "Edit", edit_pin_path, class: "btn btn-default"
+                = link_to "New_status1", new_status_pin_path(@pin), method: :put
                 / = link_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
 .col-md-8.col-md-offset-2
   .row

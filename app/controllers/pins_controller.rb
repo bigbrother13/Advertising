@@ -8,6 +8,7 @@ class PinsController < Shared::PinsController
     end
   end
 
+
   def new
     @pin = Pin.new
   end
@@ -34,5 +35,10 @@ class PinsController < Shared::PinsController
   def destroy
     @pin.destroy
     redirect_to root_path
+  end
+
+  def new_status
+    @pin = Pin.find_by(params[:id])
+    @pin.status = 1
   end
 end

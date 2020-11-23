@@ -1,5 +1,11 @@
 class Pin < ActiveRecord::Base
-  enum status: { draft: 0, published: 1, new_status: 2, rejected: 3, approved: 4, archival: 5 }
+  enum status: { draft: 0, new_status: 1, published: 2, rejected: 3, approved: 4, archival: 5 }
+
+  attr_accessor :state_event
+  after_save :trigger_state, if: :state_event
+  private def trigger_state
+    send(state_event) if send(:"can_#{state_event}?")
+  end
 
   # searchkick
   acts_as_votable

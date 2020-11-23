@@ -2,7 +2,7 @@ doctype transitional
 html
 header
   title
-    | Shuttersbank
+    | Advertising
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
@@ -10,7 +10,7 @@ body
   nav.navbar.navbar-default
     .container
       .navbar-brand
-        = link_to "Shuttersbank", root_path
+        = link_to "Advertising", root_path
 
       - if user_signed_in?
         .dropdown
@@ -52,8 +52,9 @@ body
             = link_to "Sign Out", destroy_user_session_path, method: :get, data: { confirm: "Are you sure?" }, class: "btn btn-default"
           li
             = link_to(image_tag(current_user.avatar.url), edit_user_registration_path)
-          li
-            = link_to current_user.username , edit_user_registration_path
+          - if current_user && !current_user.admin?
+            li
+              = link_to "My Pins", user_pins_path(current_user)
       - else
         ul.nav.navbar-nav.navbar-right
           li

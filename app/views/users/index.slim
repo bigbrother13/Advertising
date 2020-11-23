@@ -1,0 +1,17 @@
+#pins.transitions-enabled
+  - @pins.each do |pin|
+    .box.panel.panel-default
+      = link_to (image_tag pin.image.url(:thumb)), pin
+      .panel-body
+        h2= link_to pin.title, pin
+        p
+          small
+            time= pin.created_at.to_date.strftime("%d %B, %Y")
+        p
+          -if pin.user
+            strong= link_to pin.user.username, user_path(pin.user.username)
+        p= pin.description
+        p= pin.status
+        p.user
+        Submitted
+        | #{pin.user&.email}
