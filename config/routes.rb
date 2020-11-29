@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     end
     member do
       put "Lile", to: "pins#upvote"
-      get :new_status, as: :new_status
-      get :approved , as: :approved
-      get :rejected  , as: :rejected
+      put :new_status, as: :new_status
+      put :approved , as: :approved
+      put :rejected  , as: :rejected
     end
   end
 

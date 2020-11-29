@@ -6,6 +6,7 @@ log/*
 tmp/*
 !/log/.keep
 !/tmp/.keep
+!/tmp/pids/server.pid
 
 # Ignore Byebug command history file.
 .byebug_history

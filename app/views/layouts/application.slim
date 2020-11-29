@@ -47,14 +47,14 @@ body
                   = text_field_tag :search, params[:search], class: "form-control"
           - if current_user && !current_user.admin?
             li
-              = link_to "New Pin", new_pin_path
+              = button_to "New Pin", new_pin_path, method: :get
           li
-            = link_to "Sign Out", destroy_user_session_path, method: :get, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+            = button_to "Sign Out", destroy_user_session_path, method: :get, data: { confirm: "Are you sure?" }, class: "btn btn-default"
           li
             = link_to(image_tag(current_user.avatar.url), edit_user_registration_path)
           - if current_user && !current_user.admin?
             li
-              = link_to "My Pins", user_pins_path(current_user)
+              = button_to "My Pins", user_pins_path(current_user), method: :get
       - else
         ul.nav.navbar-nav.navbar-right
           li
@@ -62,9 +62,9 @@ body
             p
               = text_field_tag :search, params[:search], class: "form-control"
           li
-            = link_to "Sign Up", new_user_registration_path
+            = button_to "Sign Up", new_user_registration_path
           li
-            = link_to "Sing In", new_user_session_path
+            = button_to "Sing In", new_user_session_path
 
   .container
     - flash.each do |name, msg|

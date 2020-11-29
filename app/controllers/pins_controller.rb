@@ -1,4 +1,6 @@
-class PinsController < Shared::PinsController
+class PinsController < ApplicationController
+  before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote]
+
   def index
     pins = current_user && current_user.admin? ? Pin.all : Pin.published
     @pins = pins.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
@@ -41,20 +43,35 @@ class PinsController < Shared::PinsController
     @pin = Pin.find(params[:id])
     @pin.status = 1
     @pin.save
-    redirect_to pin_path(@pin)
+    redirect_to pin_path(@pin), notice: "Successfully assigned status New"
   end
 
   def approved
     @pin = Pin.find(params[:id])
     @pin.status = 4
     @pin.save
-    redirect_to pin_path(@pin)
+    redirect_to pin_path(@pin), notice: "Successfully assigned status Approved"
   end
 
   def rejected
     @pin = Pin.find(params[:id])
     @pin.status = 3
     @pin.save
-    redirect_to pin_path(@pin), notice: "Pin rejected!"
+    redirect_to pin_path(@pin), notice: "Successfully assigned status Rejected"
+  end
+
+  def upvote
+    @pin.upvote_by current_user
+    redirect_to :back
+  end
+
+  private
+
+  def pin_params
+    params.require(:pin).permit(:title, :description, :image, :all_tags, :category_id)
+  end
+
+  def find_pin
+    @pin = Pin.find(params[:id])
   end
 end

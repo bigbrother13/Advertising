@@ -6,6 +6,7 @@ namespace :pins do
       if pin.approved?
         pin.status = "published"
         pin.save
+        puts "Successfully assigned status Published"
       end
     end
   end
@@ -20,6 +21,7 @@ namespace :pins do
         if time > now
           pin.status = "archival"
           pin.save
+          puts "Successfully assigned status Archival"
         end
       end
     end
