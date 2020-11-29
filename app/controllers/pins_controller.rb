@@ -9,7 +9,7 @@ class PinsController < Shared::PinsController
   end
 
 
-  def new_status
+  def new
     @pin = Pin.new
   end
 
