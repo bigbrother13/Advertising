@@ -9,7 +9,7 @@ class PinsController < Shared::PinsController
   end
 
 
-  def new
+  def new_status
     @pin = Pin.new
   end
 
@@ -38,7 +38,23 @@ class PinsController < Shared::PinsController
   end
 
   def new_status
-    @pin = Pin.find_by(params[:id])
+    @pin = Pin.find(params[:id])
     @pin.status = 1
+    @pin.save
+    redirect_to pin_path(@pin)
+  end
+
+  def approved
+    @pin = Pin.find(params[:id])
+    @pin.status = 4
+    @pin.save
+    redirect_to pin_path(@pin)
+  end
+
+  def rejected
+    @pin = Pin.find(params[:id])
+    @pin.status = 3
+    @pin.save
+    redirect_to pin_path(@pin), notice: "Pin rejected!"
   end
 end

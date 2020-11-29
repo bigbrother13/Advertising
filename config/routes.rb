@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     end
     member do
       put "Lile", to: "pins#upvote"
-      put :new_status, as: :new_status
+      get :new_status, as: :new_status
+      get :approved , as: :approved
+      get :rejected  , as: :rejected
     end
   end
 
@@ -22,7 +24,6 @@ Rails.application.routes.draw do
 
   get ':username' => 'users#show', as: 'user'
   get 'users/:id/pins' => 'users#index', :as => :user_pins
-  # patch 'pins/:id/new_status' => 'pins#new_status', :as => :new_status
 
   root "pins#index"
 end

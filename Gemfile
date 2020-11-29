@@ -28,6 +28,7 @@ gem "better_errors"
 gem "binding_of_caller"
 gem 'oj'
 gem 'oj_mimic_json'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'database_cleaner'
