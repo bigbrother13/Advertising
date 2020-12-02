@@ -27,17 +27,20 @@
               = link_to Lile_pin_path(@pin), method: :put, class: "btn btn-default" do
                 span.glyphicon.glyphicon-heart
                   = @pin.get_upvotes.size
-              - if user_signed_in? && @pin.user == current_user && !current_user&.admin
-                - if @pin.draft? || @pin.rejected?
-                  = button_to "New Status", { action: :new_status, id: @pin.id }, method: :put, class: "btn btn-default"
-                  = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
-                  = button_to "Edit", edit_pin_path, class: "btn btn-default"
+              - if user_signed_in?
+                - if @pin.user == current_user && !current_user&.admin
+                  - if @pin.draft? || @pin.rejected?
+                    = button_to "New Status", { action: :new_status, id: @pin.id }, method: :put, class: "btn btn-default"
+                    = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
+                    = button_to "Edit", edit_pin_path(@pin), method: :get, class: "btn btn-default"
+                  - else
+                    = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
+                - elsif @pin.new_status?
+                    = button_to "Approved", approved_pin_path, method: :put, class: "btn btn-primary"
+                    = button_to "Rejected", rejected_pin_path, method: :put, class: "btn btn-default"
+                    = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
                 - else
-                  = link_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
-              - else
-                = button_to "Approved", approved_pin_path, method: :put, class: "btn btn-primary"
-                = button_to "Rejected", rejected_pin_path, method: :put, class: "btn btn-default"
-                = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
+                    = button_to "Delete", pin_path(@pin), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default"
 .col-md-8.col-md-offset-2
   .row
     .panel.panel-default
